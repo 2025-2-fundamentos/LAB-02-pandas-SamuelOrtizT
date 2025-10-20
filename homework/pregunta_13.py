@@ -24,6 +24,6 @@ def pregunta_13():
     df0 = pd.read_csv("./files/input/tbl0.tsv", sep="\t")
     df2 = pd.read_csv("./files/input/tbl2.tsv", sep="\t")
     df2 = df2.groupby("c0")["c5b"].sum().reset_index()
-    resultado = pd.concat([df0, df2], axis=1, join="inner", ignore_index=False, sort=False)
+    resultado = pd.merge(df0, df2, on="c0")
 
     return resultado.groupby("c1")["c5b"].sum()
